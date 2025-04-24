@@ -3,6 +3,9 @@ import express from "express";
 // We use dotenv so that we can access our enivornment variables
 import "dotenv/config";
 
+// We import our index.js so that we can query our database
+import * as db from "./db/index.js";
+
 // Create an instance of express
 const requestHandler = express();
 // Storing our port value from the .env file
@@ -12,6 +15,22 @@ const port = process.env.PORT;
 requestHandler.use(express.json());
 
 
+//GET template
+requestHandler.get("/api/v1/water-quality-data", (req, res) => {
+    res.send("Hello World!");
+});
+
+// GET water quality data
+requestHandler.get("/api/v1/water-quality-data", async (req, res) => {
+    const dbResponse = await db.query("select * from water_quality limit 5");
+    console.log(dbResponse);
+    res.send(dbResponse);
+});
+
+
+// Starting our http server and listening for requests!
 requestHandler.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
+
+
