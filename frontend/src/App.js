@@ -1,31 +1,33 @@
 import React from 'react';
 import './App.css';
-
+import {  Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Button from 'react-bootstrap/Button';
+import AppNavBar from './components/AppNavBar';
+
+
+//Importing the files/functions from the files in src
+import AboutMePage from './components/AboutMePage';
+import DataAnalysisPage from './components/DataAnalysisPage';
+import Header from './components/Header';
+
+
+//React working with BrowserRouter in order to navigate API based on path
+//The paths are the URL to each page app
 function App() {
   return (
-    <div className="App">
-      <Button style={{ color: 'black', backgroundColor: 'lightblue', fontSize: '48x', position: 'fixed', textAlign: 'center', left: '50px'}}>About me page</Button>
-
-      <header className="App-header">
-        <h1 style={{ fontSize: '48x', postion: 'fixed', textAlign: 'center', bottom: '50px' }}>
-        Water Quality Analysis
-        </h1>
-        <h5>
-          Welcome!
-        </h5>
-      <div class="button-container">
-        <button style={{ fontSize: '18px', marginRight: '10px'}}>Select Water Waterbody Name</button>
-        <button style={{ fontSize: '18px'}}>Select Analysis Type</button>
-      </div>
-        <Button style={{ color: 'black', backgroundColor: 'lightblue'}}>Submit</Button>
-        
-      </header>
-      
+    <div> 
+    <AppNavBar />
+    <Routes>
+      <Route path="/navbar" element={<AppNavBar />} />
+      <Route path="/" element={<Header />} /> 
+      <Route path="/about" element={<AboutMePage />}/>
+      <Route path="/data" element={<DataAnalysisPage />} />
+    </Routes>
     </div>
   );
 }
+
+//Make sure to only use one Browser react within my application only use in idex
 
 export default App;
