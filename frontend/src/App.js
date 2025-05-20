@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import AppNavBar from './components/AppNavBar';
 
+import Papa from 'papaparse';
+import React, { useEffect, useState } from 'react';
 
 //Importing the files/functions from the files in src
 import AboutMePage from './components/AboutMePage';

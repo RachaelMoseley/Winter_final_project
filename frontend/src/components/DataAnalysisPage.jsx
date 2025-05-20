@@ -9,7 +9,10 @@ function DataAnalysisPage() {
                     Data Analysis Page
                 </h1>
 
-<div style={{display: 'felx', gap: '50px', marginLeft:'130px', marginTop:'20px' }}>
+
+{/* Here I created a div style to manage my two columns data analysis and display(basic chart that perplexity helped me with and I just used) */}
+{/* displa*/}
+<div style={{ gap: '50px', marginLeft:'130px', marginTop:'20px' }}>
     <div>
         <h3 style={{ fontWeight:'bold '}}>Data Analysis:</h3>
             <div style={{ width:'300px', textAlign: 'left', marginLeft:'130px', padding:'20px', border: '2px solid #ccc', borderRadius:'8px', overflowY:'auto'}}>
@@ -22,7 +25,9 @@ function DataAnalysisPage() {
                     <DisplayChart />
                 </div>
             </div>
+            
             </div>
+
             </header>
             
         </div>

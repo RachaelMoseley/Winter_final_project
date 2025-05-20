@@ -28,6 +28,8 @@ const data = {
     ],
 };
 
+
+/* responsive = chart resizes with window, plugins = extra fet., legend= the chart's label box*/
 const options = {
     responsive: true,
     plugins: {
@@ -36,6 +38,8 @@ const options = {
     },
 };
 
+
+/* Display function with style calling my data function I then call this in Data Analysis  */
 const DisplayChart = () => (
     <div style={{ width: '400px', margin: '0 auto'}}>
         <Bar data={data} options={options} />
