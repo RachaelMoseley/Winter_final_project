@@ -1,6 +1,6 @@
-import React from 'react'
-import Button from 'react-bootstrap/Button';
 import React, { useState } from "react";
+import Button from 'react-bootstrap/Button';
+
 
 
 
@@ -71,7 +71,11 @@ function Header({ onSubmit }) {
         "NETAI PUKHURI AT NETAI PUKHURI",
         "PADUMPUKHURI, TEZPUR, ASSAM",
         "POND WATER FROM RAMKRISHNA MISSION AT HAILAKANDI",
-        "",
+        "RAJADINIA PUKHURI AT ABHAYAPURI, ASSAM",
+        "RAJAPUKHURI AT GAURIPUR, ASSAM",
+        "RAJMAW PUKHURI, JORHAT, ASSAM",
+        "SARAN BEEL, ASSAM",
+        "SIVASAGAR TANK (BORPUKHURI) NEAR SIVADOL, ASSAM",
 
 
 
@@ -79,45 +83,92 @@ function Header({ onSubmit }) {
     ];
 
     const analysisOptions = [
-        "Temperature Levels",
-        "Dissolved Oxygen Levels",
-        "pH Levels",
-        "Condutivity Levels",
-        "Biochemical Oxygen Demand Levels",
-        "Nirate Levels",
-        "Fecal Coliform Levels",
-        "Total Coliform Levels",
+        "Temperature",
+        "Dissolved Oxygen",
+        "pH",
+        "Condutivity",
+        "BOD",
+        "Nirate N + Nitrite N",
+        "Fecal Coliform",
+        "Total Coliform",
 
     ];
 
+    //So users selects both options, lets out alert to make sure they do so
     const handleSubmit = () => {
         if (waterbody && analysisType) {
             onSubmit({ waterbody, analysisType });
         } else {
             alert("YOU NEED TO SELECT BOTH OPTIONS");
         }
-    }
-};
+    };
+
+
+    return (
+        
+    <div style={{ marginBottom: "20px", display: "flex", justifyContent: "center", gap: "10px"}}>
+        
+        <label>
+            <strong style={{ fontSize: "22px"}}>Waterbody:{" "}</strong>
+            <select value={waterbody} onChange={(e) => setWaterbody(e.target.value)}>
+                <option value="">Select Waterbody Name!</option>
+                {waterbodyOptions.map((name) => (
+                    <option key={name} vlaue={name}>
+                        {name}
+                    </option>
+                ))}
+
+            </select>
+        </label>
+    
+   
+        <label style={{ marginLeft: "20px" }}>
+            <strong style={{ fontSize: "22px" }}> Analysis Type:{" "}</strong>
+            <select
+                value={analysisType}
+                onChange={(e) => setAnalysisType(e.target.value)}
+            >
+                <option value=" ">Select Analysis Type!</option>
+                {analysisOptions.map((type) => (
+                    <option key={type} value={type}>
+                        {type}
+                    </option>
+                ))}
+            </select>
+        </label>
+       
+
+        <Button onClick={handleSubmit} style={{ marginLeft: "20px", padding: "10px 24px", borderRadius: "5px" }}>
+            Submit
+        </Button>
+       
+    </div>
+    );
+}
+
+
+
+
 
 
 
 //const Header = () => {
-  return (
-    <header className="App-header">
-        <h1 style={{ fontSize: '48px', postion: 'fixed', textAlign: 'center', bottom: '50px', fontWeight:'bold' }}>
-        Water Quality Analysis
-        </h1>
-        <h5>
-          Welcome!
-        </h5>
-      <div className="button-container">
-        <button style={{ fontSize: '18px', marginRight: '10px'}}>Select Water Waterbody Name</button>
-        <button style={{ fontSize: '18px'}}>Select Analysis Type</button>
-      </div>
-        <Button style={{ color: 'black', backgroundColor: 'lightblue'}}>Submit</Button>
-
-      </header>
-  );
+//  return (
+//    <header className="App-header">
+//        <h1 style={{ fontSize: '48px', postion: 'fixed', textAlign: 'center', bottom: '50px', fontWeight:'bold' }}>
+ //       Water Quality Analysis
+ //       </h1>
+  //      <h5>
+   //       Welcome!
+   //     </h5>
+  //    <div className="button-container">
+   //    <button style={{ fontSize: '18px', marginRight: '10px'}}>Select Water Waterbody Name</button>
+   //     <button style={{ fontSize: '18px'}}>Select Analysis Type</button>
+   //   </div>
+  //      <Button style={{ color: 'black', backgroundColor: 'lightblue'}}>Submit</Button>
+//
+  //    </header>
+ // );
 //}
 
 export default Header;

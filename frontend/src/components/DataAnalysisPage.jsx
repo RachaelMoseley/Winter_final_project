@@ -1,37 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Header from "./Header";
 import DisplayChart from './Chart';
 
+
 function DataAnalysisPage() {
+    const [data, setData] = useState([]);
+    const[params, setParams] = useState({ waterbody: "", analysisType: ""});
+
+    const handleSubmit = ({ waterbody, analysisType }) => {
+        setParams({waterbody, analysisType});
+    };
+
+    useEffect(() => {
+        if(!params.waterbody || !params.analysisType) return;
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    `/api/v1/water-quality-data?waterbody=${encodeURIComponent(
+                        params.waterbody
+                    )}`
+                );
+                const json = await response.json();
+                setData(json);
+            } catch (error) {
+                console.log("Fetch error:", error);
+            }
+        };
+
+        fetchData();
+    }, [params]);
+
     return (
-        <div className='DataAnalysis'>
-            <header className='app-header'>
-                <h1 style={{ fontSize: '48px', bottom: '50px', marginBottom:'50px', marginLeft:'500px', fontWeight:'bold' }}>
-                    Data Analysis Page
-                </h1>
-
-
-{/* Here I created a div style to manage my two columns data analysis and display(basic chart that perplexity helped me with and I just used) */}
-{/* displa*/}
-<div style={{ gap: '50px', marginLeft:'130px', marginTop:'20px' }}>
-    <div>
-        <h3 style={{ fontWeight:'bold '}}>Data Analysis:</h3>
-            <div style={{ width:'300px', textAlign: 'left', marginLeft:'130px', padding:'20px', border: '2px solid #ccc', borderRadius:'8px', overflowY:'auto'}}>
-                <h4>Water quality: ???
-                    ????? 100%, Numbers, Numbers, Numbers, Numbers, Numbers, Numbers, Numbers, 10000
-                </h4>
-            </div>
-            <div>
-                <h3 style={{fontWeight:'bold'}}>Display: </h3>
-                    <DisplayChart />
-                </div>
-            </div>
-            
-            </div>
-
-            </header>
-            
+        <div>
+            <Header onSubmit={handleSubmit} />
+            <h2>Data Analysis for {params.waterbody}</h2>
+            <DisplayChart data={data} analysisType={params.analysisType} />
         </div>
     );
 }
+
 
 export default DataAnalysisPage;

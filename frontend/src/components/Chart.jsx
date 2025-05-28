@@ -1,51 +1,82 @@
-import React from 'react';
-import { Bar } from 'react-chartjs-2';
-import 'chart.js/auto';
+import React from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer
+} from "recharts";
 
-const data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
-    datasets: [
-        {
-            label: 'Water',
-            data: [12, 19, 3, 5, 2],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.6)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
+function DisplayChart({ data, analysisType }) {
+  if (!Array.isArray(data) || data.length === 0) {
+    console.log("Chart error: data is not an array", data);
+    return <p>No data available for your selected waterbody.</p>;
+  }
 
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-            ],
-            borderWidth: 1,
-        },
-    ],
-};
+  
+  let minColumn = "";
+  let maxColumn = "";
 
+  switch (analysisType) {
+    case "Temperature":
+      minColumn = "Temperature ?C (Min)";
+      maxColumn = "Temperature ?C (Max)";
+      break;
+    case "Dissolved Oxygen":
+      minColumn = "Dissolved Oxygen (mg/L) (Min)";
+      maxColumn = "Dissolved Oxygen (mg/L) (Max)";
+      break;
+    case "pH":
+      minColumn = "pH (Min)";
+      maxColumn = "pH (Max)";
+      break;
+    case "Conductivity":
+      minColumn = "Conductivity (?mhos/cm) (Min)";
+      maxColumn = "Conductivity (?mhos/cm) (Max)";
+      break;
+    case "BOD":
+      minColumn = "BOD (mg/L) (Min)";
+      maxColumn = "BOD (mg/L) (Max)";
+      break;
+    case "Nitrate N + Nitrite N":
+      minColumn = "Nitrate N + Nitrite N(mg/L) (Min)";
+      maxColumn = "Nitrate N + Nitrite N(mg/L) (Max)";
+      break;
+    case "Fecal Coliform":
+      minColumn = "Fecal Coliform (MPN/100ml) (Min)";
+      maxColumn = "Fecal Coliform (MPN/100ml) (Max)";
+      break;
+    case "Total Coliform":
+      minColumn = "Total Coliform (MPN/100ml) (Min)";
+      maxColumn = "Total Coliform (MPN/100ml) (Max)";
+      break;
+    default:
+      return <p>Analysis type is not supported.</p>;
+  }
 
-/* responsive = chart resizes with window, plugins = extra fet., legend= the chart's label box*/
-const options = {
-    responsive: true,
-    plugins: {
-        legend: {position: 'Top'},
-        title: {display: true, text: 'Diagram'},
-    },
-};
+  const chartData = data.map((item) => ({
+    name: item["Name of Monitoring Location"],
+    min: Number(item[minColumn]) || 0,
+    max: Number(item[maxColumn]) || 0,
+  }));
 
-
-/* Display function with style calling my data function I then call this in Data Analysis  */
-const DisplayChart = () => (
-    <div style={{ width: '400px', margin: '0 auto'}}>
-        <Bar data={data} options={options} />
-
-    </div>
-);
-
+  return (
+    <ResponsiveContainer width="100%" height={400}>
+      <BarChart
+        data={chartData}
+        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+      >
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="min" stackId="a" fill="#8884d8" name="Min Value" />
+        <Bar dataKey="max" stackId="a" fill="#82ca9d" name="Max Value" />
+      </BarChart>
+    </ResponsiveContainer>
+  );
+}
 
 export default DisplayChart;
