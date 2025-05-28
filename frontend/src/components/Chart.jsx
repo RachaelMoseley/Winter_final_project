@@ -9,13 +9,14 @@ import {
   ResponsiveContainer
 } from "recharts";
 
+//receives object of props, extracts data and analysisType(Chekcs if data prop is vaild)
 function DisplayChart({ data, analysisType }) {
   if (!Array.isArray(data) || data.length === 0) {
     console.log("Chart error: data is not an array", data);
     return <p>No data available for your selected waterbody.</p>;
   }
+//If true renders a chart using d & A
 
-  
   let minColumn = "";
   let maxColumn = "";
 

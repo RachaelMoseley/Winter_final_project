@@ -113,7 +113,7 @@ function Header({ onSubmit }) {
             <select value={waterbody} onChange={(e) => setWaterbody(e.target.value)}>
                 <option value="">Select Waterbody Name!</option>
                 {waterbodyOptions.map((name) => (
-                    <option key={name} vlaue={name}>
+                    <option key={name} value={name}>
                         {name}
                     </option>
                 ))}
@@ -128,7 +128,7 @@ function Header({ onSubmit }) {
                 value={analysisType}
                 onChange={(e) => setAnalysisType(e.target.value)}
             >
-                <option value=" ">Select Analysis Type!</option>
+                <option value="">Select Analysis Type!</option>
                 {analysisOptions.map((type) => (
                     <option key={type} value={type}>
                         {type}
