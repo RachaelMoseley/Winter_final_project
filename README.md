@@ -5,6 +5,7 @@ Finding the water quality from a selection of waterbodies in India.
 ## Table of Contents
 1. [Overview](#overview)
 1. [Product Spec](#product-spec)
+1. [Schema](#Schema)
 
 ## Overview
 ### Description (Business Thesis)
