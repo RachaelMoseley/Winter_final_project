@@ -36,6 +36,24 @@ Customer Segment: Residential, Government, Industrial.
 <img src="Wireframe2.png" alt="Wireframe Image" width="500">
 <img src="wireframe3.png" alt="Wireframe Image" width="500">
 
+## Schema
+### Model
+| Property | type | Description |
+| --- | --- | --- |
+| Station_code | String | Identifier for the monitoring location |
+| Location | String | Station location |
+| State_name | String | The State in India where the station is located |
+| Waterbody_type | String | Type of waterbody |
+| Temperature | Float | Water temperature |
+| pH | Float | pH level of water |
+| Conductivity | Float | Conductivity levels |
+| BOD | Float | Biological Oxygen Demand levels (mg/L) |
+| Dissolved_Oxygen | Float | Dissolved oxygen levels (mg/L) |
+| Nitrate_nitrite | Float | Concentration levels (mg/L) |
+| Fecal_coliform | Float | Fecal colifrom count (MPN/100mL) |
+| Total_coliform | Float | Total coliform count (MPN/100mL) |
+
+
 
 
 
