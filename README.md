@@ -38,6 +38,8 @@ Customer Segment: Residential, Government, Industrial.
 
 ## Schema
 ### Model
+Below in this dataset is a measurement of the water quality at a specific station:
+
 | Property | type | Description |
 | --- | --- | --- |
 | Station_code | String | Identifier for the monitoring location |
