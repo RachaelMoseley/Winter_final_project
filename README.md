@@ -31,6 +31,12 @@ Customer Segment: Residential, Government, Industrial.
 ### Most Significant Benefit
 #### Water Quality Analyzer will help users to identify pollution areas and track water quality trends to support environment protection and to protect the public’s health.
 
+## Wireframes
+<img src="wireframe1.png" alt="Wireframe Image" width="500">
+<img src="Wireframe2.png" alt="Wireframe Image" width="500">
+<img src="wireframe3.png" alt="Wireframe Image" width="500">
+
+
 
 
 
